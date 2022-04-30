@@ -125,6 +125,14 @@ function bookLet(src, segment = 1) {
 
         pageOrder.reverse()
 
+        pageOrder.forEach(i=>{
+            if(numberCheck(i)){
+                reOrder.push(i)
+            }
+        })
+
+        console.log(reOrder);
+
         let pair = [Math.floor(pageOrder.length/2)-1, Math.floor(pageOrder.length/2) ]
         console.log(`Pair indexes are : (${pair})`)
 
@@ -148,3 +156,14 @@ function bookLet(src, segment = 1) {
 }
 
 bookLet("test.pdf")
+
+
+
+function numberCheck(num){
+    if(num % 2 == 0){
+        return true; 
+    }
+    else{
+        return false; 
+    }
+}
