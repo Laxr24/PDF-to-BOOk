@@ -11,21 +11,28 @@ var prevPage = document.querySelector("#p_p")
 var totalPages;
 var currentPage = 1
 
+// initial rendering
 renderPage(currentPage)
 currentPageNumbers.textContent = currentPage
 
-
+// On next page request
 nextPage.onclick = () => {
     currentPage = currentPage + 1
     renderPage(currentPage)
     currentPageNumbers.textContent = currentPage
 }
+
+
+
+// On previous page request
 prevPage.onclick = () => {
     currentPage = currentPage - 1
     renderPage(currentPage)
     currentPageNumbers.textContent = currentPage
 }
 
+
+// Main render asynchronous function 
 function renderPage(currentPage) {
 
     var loadingTask = pdfjsLib.getDocument('test.pdf');
@@ -53,8 +60,7 @@ function renderPage(currentPage) {
             canvas.style.width = Math.floor(viewport.width) + "px";
             canvas.style.height = Math.floor(viewport.height) + "px";
 
-            var transform = outputScale !== 1 ?
-                [outputScale, 0, 0, outputScale, 0, 0] :
+            var transform = outputScale !== 1 ? [outputScale, 0, 0, outputScale, 0, 0] :
                 null;
 
             var renderContext = {
@@ -72,18 +78,8 @@ function renderPage(currentPage) {
 }
 
 
-function bookLet(src){
-    var loadingTask = pdfjsLib.getDocument(src);
-    loadingTask.promise.then(function (pdf) {
-        let totalPage = pdf._pdfInfo.numPages;
-        let bookLetPage = Math.ceil(totalPage/2);
 
-        console.log("Total page: "+ totalPage);
-        console.log("Book sheet: " + bookLetPage);
-    })
-}
 
-bookLet("test.pdf")
 
 
 
@@ -97,8 +93,50 @@ bookLet("test.pdf")
  * then the range will be (1-5)(3 page), (6-11)(3 page)
  * 
  * 
- * So, the params. are -  totalPage, printSegment, ranges[array]
+ * So, the params. are -  totalPage, printSegment, ranges[array], sheet
  * 
  * 
  * The printed segment should be flipped around the longest edege
  */
+
+// Printable book calculation asynchronous function 
+function bookLet(src, segment = 1) {
+    var loadingTask = pdfjsLib.getDocument(src);
+    loadingTask.promise.then(function (pdf) {
+        let totalPage = pdf._pdfInfo.numPages;
+        // let totalPage = 97;
+        let sheet = Math.ceil(totalPage / 2);
+        let segments = segment
+
+        let pageOrder = []
+        //[1,2,3,4,5,6,7,8,9,10,11,12]
+        let reOrder = []
+        //[12,11,10,9,8,7,6,5,4,3,2,1]
+        // [ (12,1), (10,3) , (8, 5), (2,11) , (4,9) , (6,7)  ]
+
+        for (let i = 1; i <= totalPage+1; i++) {
+            pageOrder.push(i)
+        }
+
+        pageOrder.reverse().forEach(i=>{
+            console.log(i);
+        })
+
+
+        console.log(pageOrder);
+
+
+        if (segment > 1) {
+            console.log("The book will be printed in multiple segments: " + segments);
+            console.log("Total page: " + totalPage);
+            console.log("Printing the segment needs: " + Math.ceil(sheet/segments) + " Sheets");
+        } else {
+            console.log("Total page: " + totalPage);
+            console.log("Printing the book needs: " + sheet/2 + " Sheets");
+        }
+
+
+    })
+}
+
+bookLet("test.pdf")
