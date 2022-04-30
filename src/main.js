@@ -84,3 +84,21 @@ function bookLet(src){
 }
 
 bookLet("test.pdf")
+
+
+
+/** 
+ * Suppose there is a book with total page of 11
+ * So, the PrintBook will take 6 Paper sheets
+ * 
+ * Now if you want to print the book in 1 Juzz(খন্ড)
+ * then the range will be 1-11,
+ * if you wanto to print the book in 2 Juss(খন্ড)
+ * then the range will be (1-5)(3 page), (6-11)(3 page)
+ * 
+ * 
+ * So, the params. are -  totalPage, printSegment, ranges[array]
+ * 
+ * 
+ * The printed segment should be flipped around the longest edege
+ */
