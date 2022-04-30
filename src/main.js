@@ -112,15 +112,23 @@ function bookLet(src, segment = 1) {
         //[1,2,3,4,5,6,7,8,9,10,11,12]
         let reOrder = []
         //[12,11,10,9,8,7,6,5,4,3,2,1]
-        // [ (12,1), (10,3) , (8, 5), (2,11) , (4,9) , (6,7)  ]
+        // Split the array in two half
+        // Sequence join 
+        // [12,10,8] + [1,3,5]
+        // Flip log edge
+        // [2,4,6]+[11,9,7]
+        // [ (12,1), (10,3) , (8, 5) -- flip operation -- (2,11) , (4,9) , (6,7)  ]
 
         for (let i = 1; i <= totalPage+1; i++) {
             pageOrder.push(i)
         }
 
-        pageOrder.reverse().forEach(i=>{
-            console.log(i);
-        })
+        pageOrder.reverse()
+
+        let pair = [Math.floor(pageOrder.length/2)-1, Math.floor(pageOrder.length/2) ]
+        console.log(`Pair indexes are : (${pair})`)
+
+        console.log(`Pair value from arrayare : (${pageOrder[pair[0]]}, ${pageOrder[pair[1]]})`);
 
 
         console.log(pageOrder);
