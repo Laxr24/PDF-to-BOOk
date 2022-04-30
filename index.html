@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF to Booklet</title>
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" integrity="sha512-wnea99uKIC3TJF7v4eKk4Y+lMz2Mklv18+r4na2Gn1abDRPPOeef95xTzdwGD9e6zXJBteMIhZ1+68QC5byJZw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.13.216/pdf.min.js" integrity="sha512-IM60GPudO4jk+ZQm3UlJgKHhXQi5pNDM6mP+pLKL968YgkHMc7He3aGJOVHEZ9rJ4vAaEtJ8W6SKa7Qq4inzBA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+</head>
+<body class="bg-gray-900">
+    
+    <div class="w-full px-3 py-2 bg-red-500 uppercase text-white text-lg font-bold tracking-[1em]">
+        <p>Convert PDF to Booklet</p>
+    </div>
+    <div class="w-full px-2 py-1 bg-gray-700 text-white text-sm ">
+        <p class="inline mx-2">Number of pages : </p> <span id="pageNumber">0</span>
+        <p class="inline mx-2">Current page : </p> <span id="currentPage">0</span>
+
+        <span><button id="p_n" class="mx-3 bg-green-600 text-white  px-2 py-1 uppercase">Next page</button></span>
+        <span><button id="p_p" class="mx-3 bg-yellow-800 text-white  px-2 py-1 uppercase">Prev. page</button></span>
+    </div>
+
+
+    <canvas class="mx-auto mt-2" id="viewer"></canvas>
+    <script src="src/main.js"></script>
+</body>
+</html>
