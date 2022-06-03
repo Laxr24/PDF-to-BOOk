@@ -45,7 +45,7 @@ function renderPage(currentPage) {
         }
 
         pdf.getPage(currentPage).then(function (page) {
-            var scale = .5;
+            var scale = 1;
             var viewport = page.getViewport({
                 scale: scale,
             });
@@ -190,8 +190,6 @@ function bookLet(src, segment = 1) {
 
             console.log(final)
            
-
-        
     })
 }
 
